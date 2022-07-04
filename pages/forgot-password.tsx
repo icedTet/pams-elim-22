@@ -22,7 +22,7 @@ export default function ForgotPassword(){
         const response = await fetch(`${API_DOMAIN}/forgot-password`, {
             body: JSON.stringify({
                 email,
-                redirectURL: "https://gunnelimination.com/new-password"
+                redirectURL: "https://mathcamp.tet.moe/new-password"
             }),
             headers: new Headers({'content-type': 'application/json'}),
             method: "post",

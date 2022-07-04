@@ -18,15 +18,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const user = useCurrentUser();
   useEffect(() => {
     const darkMode =
-      JSON.parse("" + localStorage.getItem("gunnelimination:darkMode")) ||
-      (!("gunnelimination:darkMode" in localStorage) &&
+      JSON.parse("" + localStorage.getItem("elim:darkMode")) ||
+      (!("elim:darkMode" in localStorage) &&
         window.matchMedia("(prefers-color-scheme: dark)").matches);
     document.body.parentElement?.classList.toggle("dark", darkMode);
   });
 
   const toggleTheme = useCallback(() => {
     const isDark = "" + document.body.parentElement?.classList.toggle("dark");
-    localStorage.setItem("gunnelimination:darkMode", isDark);
+    localStorage.setItem("elim:darkMode", isDark);
   }, []);
   return (
     <>
@@ -37,7 +37,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <ThemeButton />
       </button>
       <Head>
-        <title>Gunn Elimination 2022</title>
+        <title>PAMS Elimination 2022</title>
       </Head>
       <UserContext.Provider value={user}>
         <div className="w-full flex flex-row h-full dark:bg-gray-800 ">

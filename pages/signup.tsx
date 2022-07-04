@@ -53,7 +53,7 @@ export default function Signup() {
         firstName,
         lastName,
         createdBy: "Standalone",
-        redirectURL: "https://gunnelimination.com/app",
+        redirectURL: "https://mathcamp.tet.moe/app",
       }),
       headers: new Headers({ "content-type": "application/json" }),
       method: "post",
