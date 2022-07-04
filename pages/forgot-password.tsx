@@ -1,6 +1,7 @@
 import ErrorAlert from "../components/ErrorAlert";
 import TextBox from "../components/textbox";
 import {useCallback, useState} from "react";
+import { API_DOMAIN } from "../helpers/constants";
 
 export default function ForgotPassword(){
     const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ export default function ForgotPassword(){
             valid: false,
             message: ``,
         });
-        const response = await fetch("https://api.gunnelimination.com/forgot-password", {
+        const response = await fetch(`${API_DOMAIN}/forgot-password`, {
             body: JSON.stringify({
                 email,
                 redirectURL: "https://gunnelimination.com/new-password"
@@ -59,7 +60,7 @@ export default function ForgotPassword(){
                         <TextBox
                             className="w-full"
                             type="email"
-                            placeholder="PAUSD Email"
+                            placeholder="Email"
                             onInput={(v) => {
                                 setEmail((v.target as HTMLInputElement).value);
                             }}

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useState, useCallback, useContext, useEffect } from "react";
 import ErrorAlert from "../components/ErrorAlert";
 import TextBox from "../components/textbox";
+import { API_DOMAIN } from "../helpers/constants";
 import { UserContext } from "../helpers/usercontext";
 
 export default function Login() {
@@ -28,7 +29,7 @@ export default function Login() {
       valid: false,
       message: ``,
     });
-    const response = await fetch("https://api.gunnelimination.com/login", {
+    const response = await fetch(`${API_DOMAIN}/login`, {
       body: JSON.stringify({
         email,
         password,

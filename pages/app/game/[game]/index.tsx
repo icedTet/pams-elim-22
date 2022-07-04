@@ -32,12 +32,15 @@ export default function Index() {
     if (!router.query.game) return;
     // fetch game information: such as name/description/basic stuff
     (async function () {
+      let game;
       const response = await fetch(
         `${API_DOMAIN}/game/${router.query.game}/`,
         {}
       );
       if (response.status === 200) {
-        setGame(await response.json());
+        game = await response.json();
+
+        setGame(game);
       }
       const aR = await fetch(
         `${API_DOMAIN}/game/${router.query.game}/announcements`
@@ -45,6 +48,7 @@ export default function Index() {
       const announcements = await aR.json();
       setA(announcements.sort((a: any, b: any) => b.time - a.time)[0]);
       console.log(announcements);
+      if (!game.start) return;
       const selfResp = await fetch(
         `${API_DOMAIN}/elimination/game/${router.query.game}/user/@me/`,
         {
@@ -210,7 +214,7 @@ export default function Index() {
           >
             <div className={"w-full"}>
               <div className="grid grid-cols-3 gap-3 md:flex xl:grid-cols-2 lg:grid-cols-1 grow md:flex-col">
-                <div className="grow dark:bg-red-700/20 bg-red-600/10 flex justify-[normal] flex-col gap-2 dark:text-red-500 text-red-800 rounded-lg py-4 px-5">
+                <div className="grow dark:bg-blue-700/20 bg-blue-600/10 flex justify-[normal] flex-col gap-2 dark:text-blue-500 text-blue-800 rounded-lg py-4 px-5">
                   <div className="flex flex-col justify-center gap-2">
                     <div className="flex flex-row gap-2 mb-1 ml-1">
                       <CrossHairIcon className="w-3 h-3 my-auto" />

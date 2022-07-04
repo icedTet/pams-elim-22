@@ -3,6 +3,7 @@ import { useState, useCallback, useContext, useEffect } from "react";
 import ErrorAlert from "../components/ErrorAlert";
 import SuccessAlert from "../components/SuccessAlert";
 import TextBox from "../components/textbox";
+import { API_DOMAIN } from "../helpers/constants";
 import { UserContext } from "../helpers/usercontext";
 
 export default function NewPassword() {
@@ -35,7 +36,7 @@ export default function NewPassword() {
             valid: false,
             message: ``,
         });
-        const response = await fetch("https://api.gunnelimination.com/set-password", {
+        const response = await fetch(`${API_DOMAIN}/set-password`, {
             body: JSON.stringify({
                 password,
                 token: router.query.token
