@@ -538,9 +538,87 @@ export default function Index() {
               </div>
             )}
           </div>
-          <span className="mx-auto my-auto text-4xl link-brand">
-            Waiting for this game to start...
-          </span>
+          <div
+            className={`flex flex-col gap-8 items-center justify-center flex-grow`}
+          >
+            <span className="text-5xl link-brand text-center">
+              Waiting for this game to start...
+            </span>
+            {user?.admin && (
+              <button
+                className="btn-primary"
+                onClick={() => {
+                  fetch(
+                    `${API_DOMAIN}/elimination/game/${router.query.game}/admin/start`,
+                    {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem(
+                          "token"
+                        )}`,
+                      },
+                    }
+                  ).then((res) => {
+                    res.ok && alert("Game has been started");
+                    location.reload();
+                  });
+                }}
+              >
+                Start Game
+              </button>
+            )}
+            {user?.admin && (
+              <>
+              <span>or</span>
+              <div className="flex flex-col items-start gap-4 w-[80%] p-4 bg-gray-800 rounded-xl">
+                <span className="text-lg font-bold">
+                  Create New Announcement
+                </span>
+                <textarea
+                  className="w-full h-32 p-4 rounded-lg resize-none dark:bg-gray-700"
+                  id="announcementField"
+                />
+                <button
+                  onClick={() => {
+                    fetch(
+                      `${API_DOMAIN}/game/${router.query.game}/announcements`,
+                      {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                          Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                          )}`,
+                        },
+                        body: JSON.stringify({
+                          message: (document.getElementById(
+                            "announcementField"
+                          ) as HTMLTextAreaElement)!.value,
+                        }),
+                      }
+                    ).then(async () => {
+                      const aR = await fetch(
+                        `${API_DOMAIN}/game/${router.query.game}/announcements`
+                      );
+                      const announcements = await aR.json();
+                      setA(
+                        announcements.sort(
+                          (a: any, b: any) => b.time - a.time
+                        )[0]
+                      );
+                      (document.getElementById(
+                        "announcementField"
+                      ) as HTMLTextAreaElement)!.value = "";
+                    });
+                  }}
+                  className="px-3 py-2 text-white bg-black rounded-md dark:bg-white dark:text-black"
+                >
+                  Create
+                </button>
+              </div></>
+            )}
+          </div>
         </div>
       )}
     </div>
