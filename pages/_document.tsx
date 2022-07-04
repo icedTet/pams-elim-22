@@ -10,7 +10,7 @@ class GDocument extends Document {
             <Html className="h-full dark">
                 <Head>
                     <meta charSet="utf-8" />
-                    <link rel="icon" href="/favicon.png" />
+                    <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <body className="h-full dark:bg-gradient-to-br dark:from-zinc-900 dark:to-black dark:text-white">
                     <Main />
