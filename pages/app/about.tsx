@@ -125,7 +125,8 @@ export default function About() {
           </details>
           <details>
             <summary className={"cursor-pointer"}>
-              Click to expand Calendar (3/1/22 12AM - 3/31/22 11:59 PM) (Day, Rule)
+              Click to expand Calendar (3/1/22 12AM - 3/31/22 11:59 PM) (Day,
+              Rule)
             </summary>
             <ol>
               <li>

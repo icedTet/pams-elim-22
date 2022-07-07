@@ -31,7 +31,7 @@ export default function Home() {
           leaveTo="opacity-0 scale-0"
         >
           <h1 className="mb-1 font-bold text-transparent md:text-5xl text-9xl bg-clip-text bg-gradient-to-r from-indigo-500 to-blue-500">
-            PAMS Elimination
+            Math Camp Elimination
           </h1>
         </Transition>
         <Transition

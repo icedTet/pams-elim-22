@@ -37,14 +37,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <ThemeButton />
       </button>
       <Head>
-        <title>PAMS Elimination 2022</title>
+        <title>Math Camp Elimination 2022</title>
       </Head>
       <UserContext.Provider value={user}>
-        <div className="w-full flex flex-row h-full dark:bg-gray-800 ">
+        <div className="flex flex-row w-full h-full dark:bg-gray-800 ">
           {
             router.pathname.startsWith('/app') && <Sidebar />
           }
-          <div className="flex bg-gray-100 dark:bg-gray-900 flex-col grow  w-full">
+          <div className="flex flex-col w-full bg-gray-100 dark:bg-gray-900 grow">
             <Component {...pageProps} />
           </div>
         </div>
